@@ -79,8 +79,12 @@ private
     @resource[:flavor] || @resource[:source].match(/\.(#{FLAVORS.join('|')})$/i){|m| m[1] }
   end
 
+  def extracted_app_name
+    @resource[:extracted_app_name] || "#{@resource[:name]}.app"
+  end
+
   def app_path
-    "/Applications/#{@resource[:name]}.app"
+    "/Applications/#{extracted_app_name}"
   end
 
   def cached_path
